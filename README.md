@@ -51,6 +51,7 @@ Example request body — create expense list:
 Example request body — create expense:
 { "expenseName": "Coffee", "amount": 4.5 }
 
+
 ## Spring Security - to be implemented
 
 ## Frontend Notes
