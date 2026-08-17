@@ -8,17 +8,42 @@ interface Props {
     expenseListId: number | null;
 }
 
+/*
+ * <input type="date"> gives us:
+ *      2026-08-31
+ *
+ * Backend LocalDateTime expects:
+ *      2026-08-31T00:00:00
+ */
+function toLocalDateTime(date: string): string | null {
+    if (!date) return null;
+    return `${date}T00:00:00`;
+}
+
+/*
+ * Backend gives us:
+ *      2026-08-31T00:00:00
+ *
+ * <input type="date"> needs:
+ *      2026-08-31
+ */
+function toDateInputValue(date: string | null): string {
+    if (!date) return "";
+    return date.substring(0, 10);
+}
+
 export default function ExpensesPanel({
                                           baseUrl,
                                           expenseListId,
                                       }: Props) {
     const [expenses, setExpenses] = useState<ExpenseDto[]>([]);
 
-    // Create form
+    // Add form
     const [name, setName] = useState("");
     const [amount, setAmount] = useState("");
     const [dueDate, setDueDate] = useState("");
 
+    // Loading states
     const [deletingId, setDeletingId] = useState<number | null>(null);
     const [togglingId, setTogglingId] = useState<number | null>(null);
 
@@ -49,6 +74,7 @@ export default function ExpensesPanel({
         }
 
         setEditingId(null);
+
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [expenseListId, baseUrl]);
 
@@ -73,7 +99,7 @@ export default function ExpensesPanel({
         const body = JSON.stringify({
             expenseName: name.trim(),
             amount: parsedAmount,
-            dueDate: dueDate || null,
+            dueDate: toLocalDateTime(dueDate),
             isPaid: false,
         });
 
@@ -141,7 +167,12 @@ export default function ExpensesPanel({
         setEditingId(exp.id);
         setEditName(exp.expenseName);
         setEditAmount(String(exp.amount));
-        setEditDueDate(exp.dueDate ?? "");
+
+        // Important:
+        // Convert backend LocalDateTime to <input type="date"> format.
+        setEditDueDate(
+            toDateInputValue(exp.dueDate)
+        );
     };
 
     const cancelEdit = () => {
@@ -175,8 +206,12 @@ export default function ExpensesPanel({
             id: exp.id,
             expenseName: editName.trim(),
             amount: parsedAmount,
+
+            // Important:
+            // Convert 2026-08-31 -> 2026-08-31T00:00:00
+            dueDate: toLocalDateTime(editDueDate),
+
             createdAt: exp.createdAt,
-            dueDate: editDueDate || null,
             isPaid: exp.isPaid,
         });
 
@@ -231,26 +266,30 @@ export default function ExpensesPanel({
         today.setHours(0, 0, 0, 0);
 
         const due = new Date(
-            `${expense.dueDate}T00:00:00`
+            `${expense.dueDate.substring(0, 10)}T00:00:00`
         );
 
         return due < today;
     };
 
-    const formatDueDate = (date: string | null) => {
+    const formatDueDate = (
+        date: string | null
+    ) => {
         if (!date) return null;
+
+        const dateOnly = date.substring(0, 10);
 
         return new Intl.DateTimeFormat("ro-RO", {
             day: "2-digit",
             month: "short",
             year: "numeric",
         }).format(
-            new Date(`${date}T00:00:00`)
+            new Date(`${dateOnly}T00:00:00`)
         );
     };
 
     /*
-     * Group expenses by YYYY-MM.
+     * Group expenses by month.
      */
     const groupedExpenses = expenses.reduce(
         (groups, expense) => {
@@ -276,7 +315,9 @@ export default function ExpensesPanel({
     ).sort((a, b) => b.localeCompare(a));
 
     const formatMonth = (month: string) => {
-        const date = new Date(`${month}-01T00:00:00`);
+        const date = new Date(
+            `${month}-01T00:00:00`
+        );
 
         return new Intl.DateTimeFormat("ro-RO", {
             month: "long",
@@ -285,25 +326,29 @@ export default function ExpensesPanel({
     };
 
     const total = expenses.reduce(
-        (sum, expense) => sum + expense.amount,
+        (sum, expense) =>
+            sum + expense.amount,
         0
     );
 
     const paidTotal = expenses
         .filter((expense) => expense.isPaid)
         .reduce(
-            (sum, expense) => sum + expense.amount,
+            (sum, expense) =>
+                sum + expense.amount,
             0
         );
 
     const unpaidTotal = expenses
         .filter((expense) => !expense.isPaid)
         .reduce(
-            (sum, expense) => sum + expense.amount,
+            (sum, expense) =>
+                sum + expense.amount,
             0
         );
 
-    const overdueExpenses = expenses.filter(isOverdue);
+    const overdueExpenses =
+        expenses.filter(isOverdue);
 
     return (
         <div className="panel expenses-panel">
@@ -334,25 +379,32 @@ export default function ExpensesPanel({
                                 <span className="summary-paid">
                                     Paid{" "}
                                     <strong>
-                                        {formatRon(paidTotal)}
+                                        {formatRon(
+                                            paidTotal
+                                        )}
                                     </strong>
                                 </span>
 
                                 <span className="summary-unpaid">
                                     Unpaid{" "}
                                     <strong>
-                                        {formatRon(unpaidTotal)}
+                                        {formatRon(
+                                            unpaidTotal
+                                        )}
                                     </strong>
                                 </span>
 
-                                {overdueExpenses.length > 0 && (
-                                    <span className="summary-overdue">
+                                {overdueExpenses.length >
+                                    0 && (
+                                        <span className="summary-overdue">
                                         Overdue{" "}
-                                        <strong>
-                                            {overdueExpenses.length}
+                                            <strong>
+                                            {
+                                                overdueExpenses.length
+                                            }
                                         </strong>
                                     </span>
-                                )}
+                                    )}
                             </div>
                         )}
                     </div>
@@ -371,8 +423,8 @@ export default function ExpensesPanel({
                     </strong>
 
                     <span>
-                        Choose a list from the left to view
-                        its expenses.
+                        Choose a list from the left
+                        to view its expenses.
                     </span>
                 </div>
 
@@ -401,7 +453,8 @@ export default function ExpensesPanel({
                         const monthTotal =
                             monthExpenses.reduce(
                                 (sum, expense) =>
-                                    sum + expense.amount,
+                                    sum +
+                                    expense.amount,
                                 0
                             );
 
@@ -413,7 +466,9 @@ export default function ExpensesPanel({
                                 <div className="month-header">
                                     <div>
                                         <div className="month-name">
-                                            {formatMonth(month)}
+                                            {formatMonth(
+                                                month
+                                            )}
                                         </div>
 
                                         <div className="month-count">
@@ -442,9 +497,10 @@ export default function ExpensesPanel({
                                             editingId ===
                                             exp.id ? (
 
-                                                /* EDIT */
                                                 <div
-                                                    key={exp.id}
+                                                    key={
+                                                        exp.id
+                                                    }
                                                     className="expense-card edit-mode"
                                                 >
                                                     <div className="edit-fields">
@@ -524,9 +580,10 @@ export default function ExpensesPanel({
 
                                             ) : (
 
-                                                /* NORMAL CARD */
                                                 <div
-                                                    key={exp.id}
+                                                    key={
+                                                        exp.id
+                                                    }
                                                     className={`expense-card ${
                                                         exp.isPaid
                                                             ? "paid"
@@ -539,7 +596,6 @@ export default function ExpensesPanel({
                                                             : ""
                                                     }`}
                                                 >
-
                                                     <label
                                                         className="paid-checkbox"
                                                         onClick={(
@@ -566,8 +622,8 @@ export default function ExpensesPanel({
                                                     </label>
 
                                                     <div className="expense-info">
-
                                                         <div className="expense-title-row">
+
                                                             <div className="expense-name">
                                                                 {
                                                                     exp.expenseName
@@ -605,7 +661,6 @@ export default function ExpensesPanel({
                                                     </div>
 
                                                     <div className="expense-actions">
-
                                                         <button
                                                             className="secondary"
                                                             onClick={(
@@ -640,7 +695,6 @@ export default function ExpensesPanel({
                                                                 ? "…"
                                                                 : "Delete"}
                                                         </button>
-
                                                     </div>
                                                 </div>
                                             )
@@ -662,8 +716,8 @@ export default function ExpensesPanel({
                         </div>
 
                         <div className="add-expense-subtitle">
-                            Add an expense with an optional due
-                            date.
+                            Add an expense with an
+                            optional due date.
                         </div>
                     </div>
 
@@ -728,7 +782,9 @@ export default function ExpensesPanel({
 
                         <button
                             className="add-expense-btn"
-                            onClick={createExpense}
+                            onClick={
+                                createExpense
+                            }
                         >
                             + Add expense
                         </button>

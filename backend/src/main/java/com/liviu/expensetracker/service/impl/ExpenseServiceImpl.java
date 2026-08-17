@@ -71,7 +71,7 @@ public class ExpenseServiceImpl implements ExpenseService {
 
         existingExpense.setExpenseName(expense.getExpenseName());
         existingExpense.setAmount(expense.getAmount());
-        existingExpense.setCreatedAt(expense.getCreatedAt());
+        existingExpense.setDueDate(expense.getDueDate());
         return expenseRepository.save(existingExpense);
     }
 
