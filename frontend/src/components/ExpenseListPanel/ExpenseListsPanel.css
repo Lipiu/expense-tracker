@@ -2,27 +2,23 @@
     min-width: 0;
 }
 
-/* =========================
-   HEADER
-   ========================= */
-
 .expense-lists-header {
     display: flex;
     align-items: center;
     justify-content: space-between;
 
-    margin-bottom: 16px;
+    margin-bottom: 14px;
 }
 
 .expense-lists-count {
-    min-width: 24px;
-    height: 24px;
-
-    padding: 0 7px;
+    min-width: 23px;
+    height: 23px;
 
     display: flex;
     align-items: center;
     justify-content: center;
+
+    padding: 0 6px;
 
     border-radius: 999px;
 
@@ -30,17 +26,14 @@
     color: var(--accent);
 
     font-size: 11px;
-    font-weight: 700;
+    font-weight: 600;
 }
 
-/* =========================
-   LIST
-   ========================= */
 
 .expense-lists {
     display: flex;
     flex-direction: column;
-    gap: 6px;
+    gap: 4px;
 }
 
 .expense-list-item {
@@ -51,28 +44,32 @@
     width: 100%;
     min-width: 0;
 
-    padding: 11px 12px;
-
-    border: 1px solid var(--border);
-    border-radius: var(--radius-sm);
+    padding: 10px 11px;
 
     background: transparent;
+
+    border: 1px solid transparent;
+    border-radius: var(--radius-sm);
 
     cursor: pointer;
 
     transition:
-            background 0.15s ease,
+            background-color 0.15s ease,
             border-color 0.15s ease;
 }
 
 .expense-list-item:hover {
-    background: var(--panel-hover);
-    border-color: var(--border-hover);
+    background: var(--surface-hover);
+    border-color: var(--border);
 }
 
 .expense-list-item.selected {
     background: var(--accent-soft);
-    border-color: var(--accent);
+    border-color: color-mix(
+            in srgb,
+            var(--accent) 45%,
+            var(--border)
+    );
 }
 
 .expense-list-content {
@@ -86,7 +83,7 @@
     white-space: nowrap;
 
     font-size: 13px;
-    font-weight: 650;
+    font-weight: 550;
 }
 
 .expense-list-description {
@@ -105,18 +102,16 @@
 }
 
 .expense-list-actions .delete-btn {
-    height: 30px;
-    padding: 0 9px;
+    height: 29px;
+
+    padding: 0 8px;
 
     font-size: 10px;
 }
 
-/* =========================
-   CREATE
-   ========================= */
 
 .create-list {
-    margin-top: 20px;
+    margin-top: 18px;
     padding-top: 18px;
 
     border-top: 1px solid var(--border);
@@ -127,21 +122,23 @@
 }
 
 .create-list-title {
-    margin-bottom: 3px;
+    margin: 0;
 
-    font-size: 12px;
-    font-weight: 650;
+    font-size: 13px;
+    font-weight: 600;
 }
 
 .create-list-subtitle {
+    margin-top: 3px;
+
     color: var(--muted);
-    font-size: 10px;
+    font-size: 11px;
 }
 
 .create-list-form {
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 7px;
 }
 
 .create-list-form button {
@@ -149,9 +146,6 @@
     margin-top: 2px;
 }
 
-/* =========================
-   RESPONSIVE
-   ========================= */
 
 @media (max-width: 850px) {
     .expense-lists {

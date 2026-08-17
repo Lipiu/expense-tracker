@@ -2,12 +2,9 @@
     min-width: 0;
 }
 
-/* =========================
-   HEADER
-   ========================= */
 
 .expenses-header {
-    margin-bottom: 18px;
+    margin-bottom: 20px;
 }
 
 .expenses-title-row {
@@ -19,16 +16,17 @@
 .expenses-summary {
     display: flex;
     flex-wrap: wrap;
-    gap: 14px;
+    gap: 16px;
 
-    margin-top: 8px;
+    margin-top: 7px;
 
     color: var(--muted);
-    font-size: 11px;
+    font-size: 12px;
 }
 
 .expenses-summary strong {
     color: var(--text);
+    font-weight: 600;
 }
 
 .summary-paid strong {
@@ -39,17 +37,11 @@
     color: var(--accent);
 }
 
-.summary-overdue {
-    color: var(--err);
-}
-
+.summary-overdue,
 .summary-overdue strong {
     color: var(--err);
 }
 
-/* =========================
-   EMPTY STATE
-   ========================= */
 
 .empty-large {
     min-height: 220px;
@@ -63,42 +55,39 @@
 }
 
 .empty-icon {
-    width: 44px;
-    height: 44px;
+    width: 40px;
+    height: 40px;
 
     display: flex;
     align-items: center;
     justify-content: center;
 
-    margin-bottom: 12px;
+    margin-bottom: 10px;
 
     border-radius: 50%;
 
     background: var(--accent-soft);
     color: var(--accent);
 
-    font-size: 20px;
+    font-size: 18px;
 }
 
 .empty-large strong {
     font-size: 14px;
+    font-weight: 600;
 }
 
 .empty-large span {
     margin-top: 5px;
 
     color: var(--muted);
-    font-size: 11px;
+    font-size: 12px;
 }
-
-/* =========================
-   MONTH GROUPS
-   ========================= */
 
 .expenses-groups {
     display: flex;
     flex-direction: column;
-    gap: 22px;
+    gap: 24px;
 }
 
 .expense-month {
@@ -111,7 +100,7 @@
     justify-content: space-between;
 
     padding-bottom: 8px;
-    margin-bottom: 7px;
+    margin-bottom: 8px;
 
     border-bottom: 1px solid var(--border);
 }
@@ -120,7 +109,7 @@
     margin: 0;
 
     font-size: 13px;
-    font-weight: 650;
+    font-weight: 600;
 }
 
 .month-header span {
@@ -129,52 +118,49 @@
     margin-top: 3px;
 
     color: var(--muted);
-    font-size: 10px;
+    font-size: 11px;
 }
 
 .month-header strong {
-    color: var(--accent);
+    color: var(--text);
 
     font-size: 13px;
-    font-weight: 650;
+    font-weight: 600;
 }
-
-/* =========================
-   EXPENSE CARDS
-   ========================= */
 
 .month-expenses {
     display: flex;
     flex-direction: column;
-    gap: 5px;
+    gap: 4px;
 }
+
 
 .expense-card {
     display: flex;
     align-items: center;
-    gap: 11px;
+    gap: 10px;
 
     min-width: 0;
 
-    padding: 11px 12px;
+    padding: 10px 11px;
+
+    background: var(--surface);
 
     border: 1px solid var(--border);
     border-radius: var(--radius-sm);
 
-    background: rgba(255, 255, 255, 0.01);
-
     transition:
-            background 0.15s ease,
+            background-color 0.15s ease,
             border-color 0.15s ease;
 }
 
 .expense-card:hover {
-    background: var(--panel-hover);
+    background: var(--surface-hover);
     border-color: var(--border-hover);
 }
 
 .expense-card.paid {
-    opacity: 0.55;
+    opacity: 0.6;
 }
 
 .expense-card.paid .item-title {
@@ -183,7 +169,11 @@
 }
 
 .expense-card.overdue {
-    border-color: rgba(248, 113, 113, 0.4);
+    border-color: color-mix(
+            in srgb,
+            var(--err) 45%,
+            var(--border)
+    );
 }
 
 .expense-card.overdue:hover {
@@ -191,33 +181,30 @@
     border-color: var(--err);
 }
 
-/* =========================
-   CHECKBOX
-   ========================= */
-
 .paid-checkbox {
-    flex-shrink: 0;
-
     display: flex;
+    flex-shrink: 0;
 }
 
 .paid-checkbox input {
     appearance: none;
 
-    width: 18px;
-    height: 18px;
+    width: 17px;
+    height: 17px;
 
-    padding: 0;
     margin: 0;
+    padding: 0;
+
+    background: var(--input-bg);
 
     border: 1px solid var(--border-hover);
-    border-radius: 5px;
-
-    background: #0d0f14;
+    border-radius: 4px;
 
     cursor: pointer;
 
     position: relative;
+
+    box-shadow: none;
 }
 
 .paid-checkbox input:hover {
@@ -235,17 +222,14 @@
     position: absolute;
 
     left: 3px;
-    top: -1px;
+    top: -2px;
 
-    color: #17140c;
+    color: #ffffff;
 
     font-size: 12px;
-    font-weight: 800;
+    font-weight: 700;
 }
 
-/* =========================
-   EXPENSE INFO
-   ========================= */
 
 .expense-info {
     flex: 1;
@@ -265,15 +249,17 @@
     text-overflow: ellipsis;
     white-space: nowrap;
 
+    color: var(--text);
+
     font-size: 13px;
-    font-weight: 600;
+    font-weight: 550;
 }
 
 .expense-meta {
-    margin-top: 4px;
+    margin-top: 3px;
 
     color: var(--muted);
-    font-size: 10px;
+    font-size: 11px;
 }
 
 .expense-amount {
@@ -282,14 +268,11 @@
     color: var(--text);
 
     font-size: 13px;
-    font-weight: 650;
+    font-weight: 600;
 
     white-space: nowrap;
 }
 
-/* =========================
-   BADGES
-   ========================= */
 
 .overdue-badge,
 .paid-badge {
@@ -301,10 +284,7 @@
     border-radius: 4px;
 
     font-size: 9px;
-    font-weight: 700;
-
-    text-transform: uppercase;
-    letter-spacing: 0.03em;
+    font-weight: 600;
 }
 
 .overdue-badge {
@@ -313,13 +293,10 @@
 }
 
 .paid-badge {
-    background: rgba(74, 222, 128, 0.1);
+    background: var(--ok-soft);
     color: var(--ok);
 }
 
-/* =========================
-   ACTIONS
-   ========================= */
 
 .expense-card .list-item-actions {
     display: flex;
@@ -331,31 +308,29 @@
 
 .expense-card .list-item-actions button {
     height: 30px;
+
     padding: 0 9px;
 
-    font-size: 10px;
+    font-size: 11px;
 }
 
-/* =========================
-   ADD EXPENSE
-   ========================= */
 
 .add-expense {
-    margin-top: 22px;
+    margin-top: 24px;
     padding-top: 18px;
 
     border-top: 1px solid var(--border);
 }
 
 .add-expense-header {
-    margin-bottom: 11px;
+    margin-bottom: 12px;
 }
 
 .add-expense-header h3 {
     margin: 0;
 
-    font-size: 12px;
-    font-weight: 650;
+    font-size: 13px;
+    font-weight: 600;
 }
 
 .add-expense-header span {
@@ -364,7 +339,7 @@
     margin-top: 3px;
 
     color: var(--muted);
-    font-size: 10px;
+    font-size: 11px;
 }
 
 .expense-form {
@@ -392,11 +367,8 @@
 
     color: var(--muted);
 
-    font-size: 9px;
-    font-weight: 700;
-
-    text-transform: uppercase;
-    letter-spacing: 0.04em;
+    font-size: 10px;
+    font-weight: 500;
 }
 
 .form-field input {
@@ -408,7 +380,7 @@
 }
 
 .amount-input input {
-    padding-right: 42px;
+    padding-right: 40px;
 }
 
 .amount-input span {
@@ -422,7 +394,6 @@
     color: var(--muted);
 
     font-size: 10px;
-    font-weight: 650;
 
     pointer-events: none;
 }
@@ -433,17 +404,12 @@
     white-space: nowrap;
 }
 
-/* =========================
-   EDIT MODE
-   ========================= */
 
 .expense-card.edit-mode {
     align-items: flex-end;
 
     background: var(--accent-soft);
     border-color: var(--accent);
-
-    cursor: default;
 }
 
 .edit-fields {
@@ -464,10 +430,6 @@
 .expense-card.edit-mode .list-item-actions {
     flex-shrink: 0;
 }
-
-/* =========================
-   RESPONSIVE
-   ========================= */
 
 @media (max-width: 1000px) {
     .expense-form {
@@ -502,12 +464,12 @@
     }
 
     .expense-amount {
-        margin-left: 29px;
+        margin-left: 27px;
     }
 
     .expense-card .list-item-actions {
         width: 100%;
-        margin-left: 29px;
+        margin-left: 27px;
     }
 
     .expense-card .list-item-actions button {
