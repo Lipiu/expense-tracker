@@ -1,0 +1,167 @@
+.expense-lists-panel {
+    min-width: 0;
+}
+
+/* =========================
+   HEADER
+   ========================= */
+
+.expense-lists-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    margin-bottom: 16px;
+}
+
+.expense-lists-count {
+    min-width: 24px;
+    height: 24px;
+
+    padding: 0 7px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 999px;
+
+    background: var(--accent-soft);
+    color: var(--accent);
+
+    font-size: 11px;
+    font-weight: 700;
+}
+
+/* =========================
+   LIST
+   ========================= */
+
+.expense-lists {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.expense-list-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    width: 100%;
+    min-width: 0;
+
+    padding: 11px 12px;
+
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+
+    background: transparent;
+
+    cursor: pointer;
+
+    transition:
+            background 0.15s ease,
+            border-color 0.15s ease;
+}
+
+.expense-list-item:hover {
+    background: var(--panel-hover);
+    border-color: var(--border-hover);
+}
+
+.expense-list-item.selected {
+    background: var(--accent-soft);
+    border-color: var(--accent);
+}
+
+.expense-list-content {
+    flex: 1;
+    min-width: 0;
+}
+
+.expense-list-title {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+
+    font-size: 13px;
+    font-weight: 650;
+}
+
+.expense-list-description {
+    margin-top: 3px;
+
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+
+    color: var(--muted);
+    font-size: 11px;
+}
+
+.expense-list-actions {
+    flex-shrink: 0;
+}
+
+.expense-list-actions .delete-btn {
+    height: 30px;
+    padding: 0 9px;
+
+    font-size: 10px;
+}
+
+/* =========================
+   CREATE
+   ========================= */
+
+.create-list {
+    margin-top: 20px;
+    padding-top: 18px;
+
+    border-top: 1px solid var(--border);
+}
+
+.create-list-header {
+    margin-bottom: 11px;
+}
+
+.create-list-title {
+    margin-bottom: 3px;
+
+    font-size: 12px;
+    font-weight: 650;
+}
+
+.create-list-subtitle {
+    color: var(--muted);
+    font-size: 10px;
+}
+
+.create-list-form {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.create-list-form button {
+    width: 100%;
+    margin-top: 2px;
+}
+
+/* =========================
+   RESPONSIVE
+   ========================= */
+
+@media (max-width: 850px) {
+    .expense-lists {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 520px) {
+    .expense-lists {
+        grid-template-columns: 1fr;
+    }
+}

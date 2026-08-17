@@ -3,6 +3,8 @@ export interface ExpenseDto {
     expenseName: string;
     amount: number;
     createdAt: string;
+    dueDate: string | null;
+    isPaid: boolean;
 }
 
 export interface ExpenseListDto {

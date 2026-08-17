@@ -1,0 +1,542 @@
+.expenses-panel {
+    min-width: 0;
+}
+
+/* =========================
+   HEADER
+   ========================= */
+
+.expenses-header {
+    margin-bottom: 18px;
+}
+
+.expenses-title-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.expenses-summary {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+
+    margin-top: 8px;
+
+    color: var(--muted);
+    font-size: 11px;
+}
+
+.expenses-summary strong {
+    color: var(--text);
+}
+
+.summary-paid strong {
+    color: var(--ok);
+}
+
+.summary-unpaid strong {
+    color: var(--accent);
+}
+
+.summary-overdue {
+    color: var(--err);
+}
+
+.summary-overdue strong {
+    color: var(--err);
+}
+
+/* =========================
+   EMPTY STATE
+   ========================= */
+
+.empty-large {
+    min-height: 220px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    text-align: center;
+}
+
+.empty-icon {
+    width: 44px;
+    height: 44px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin-bottom: 12px;
+
+    border-radius: 50%;
+
+    background: var(--accent-soft);
+    color: var(--accent);
+
+    font-size: 20px;
+}
+
+.empty-large strong {
+    font-size: 14px;
+}
+
+.empty-large span {
+    margin-top: 5px;
+
+    color: var(--muted);
+    font-size: 11px;
+}
+
+/* =========================
+   MONTH GROUPS
+   ========================= */
+
+.expenses-groups {
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+}
+
+.expense-month {
+    min-width: 0;
+}
+
+.month-header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+
+    padding-bottom: 8px;
+    margin-bottom: 7px;
+
+    border-bottom: 1px solid var(--border);
+}
+
+.month-header h3 {
+    margin: 0;
+
+    font-size: 13px;
+    font-weight: 650;
+}
+
+.month-header span {
+    display: block;
+
+    margin-top: 3px;
+
+    color: var(--muted);
+    font-size: 10px;
+}
+
+.month-header strong {
+    color: var(--accent);
+
+    font-size: 13px;
+    font-weight: 650;
+}
+
+/* =========================
+   EXPENSE CARDS
+   ========================= */
+
+.month-expenses {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.expense-card {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+
+    min-width: 0;
+
+    padding: 11px 12px;
+
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+
+    background: rgba(255, 255, 255, 0.01);
+
+    transition:
+            background 0.15s ease,
+            border-color 0.15s ease;
+}
+
+.expense-card:hover {
+    background: var(--panel-hover);
+    border-color: var(--border-hover);
+}
+
+.expense-card.paid {
+    opacity: 0.55;
+}
+
+.expense-card.paid .item-title {
+    color: var(--muted);
+    text-decoration: line-through;
+}
+
+.expense-card.overdue {
+    border-color: rgba(248, 113, 113, 0.4);
+}
+
+.expense-card.overdue:hover {
+    background: var(--err-soft);
+    border-color: var(--err);
+}
+
+/* =========================
+   CHECKBOX
+   ========================= */
+
+.paid-checkbox {
+    flex-shrink: 0;
+
+    display: flex;
+}
+
+.paid-checkbox input {
+    appearance: none;
+
+    width: 18px;
+    height: 18px;
+
+    padding: 0;
+    margin: 0;
+
+    border: 1px solid var(--border-hover);
+    border-radius: 5px;
+
+    background: #0d0f14;
+
+    cursor: pointer;
+
+    position: relative;
+}
+
+.paid-checkbox input:hover {
+    border-color: var(--accent);
+}
+
+.paid-checkbox input:checked {
+    background: var(--accent);
+    border-color: var(--accent);
+}
+
+.paid-checkbox input:checked::after {
+    content: "✓";
+
+    position: absolute;
+
+    left: 3px;
+    top: -1px;
+
+    color: #17140c;
+
+    font-size: 12px;
+    font-weight: 800;
+}
+
+/* =========================
+   EXPENSE INFO
+   ========================= */
+
+.expense-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.expense-title-row {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+
+    flex-wrap: wrap;
+}
+
+.expense-title-row .item-title {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.expense-meta {
+    margin-top: 4px;
+
+    color: var(--muted);
+    font-size: 10px;
+}
+
+.expense-amount {
+    flex-shrink: 0;
+
+    color: var(--text);
+
+    font-size: 13px;
+    font-weight: 650;
+
+    white-space: nowrap;
+}
+
+/* =========================
+   BADGES
+   ========================= */
+
+.overdue-badge,
+.paid-badge {
+    display: inline-flex;
+    align-items: center;
+
+    padding: 2px 6px;
+
+    border-radius: 4px;
+
+    font-size: 9px;
+    font-weight: 700;
+
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+}
+
+.overdue-badge {
+    background: var(--err-soft);
+    color: var(--err);
+}
+
+.paid-badge {
+    background: rgba(74, 222, 128, 0.1);
+    color: var(--ok);
+}
+
+/* =========================
+   ACTIONS
+   ========================= */
+
+.expense-card .list-item-actions {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+
+    flex-shrink: 0;
+}
+
+.expense-card .list-item-actions button {
+    height: 30px;
+    padding: 0 9px;
+
+    font-size: 10px;
+}
+
+/* =========================
+   ADD EXPENSE
+   ========================= */
+
+.add-expense {
+    margin-top: 22px;
+    padding-top: 18px;
+
+    border-top: 1px solid var(--border);
+}
+
+.add-expense-header {
+    margin-bottom: 11px;
+}
+
+.add-expense-header h3 {
+    margin: 0;
+
+    font-size: 12px;
+    font-weight: 650;
+}
+
+.add-expense-header span {
+    display: block;
+
+    margin-top: 3px;
+
+    color: var(--muted);
+    font-size: 10px;
+}
+
+.expense-form {
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, 1.5fr)
+        minmax(100px, 0.7fr)
+        minmax(130px, 0.9fr)
+        auto;
+
+    gap: 8px;
+
+    align-items: end;
+}
+
+.form-field {
+    min-width: 0;
+}
+
+.form-field label {
+    display: block;
+
+    margin-bottom: 5px;
+
+    color: var(--muted);
+
+    font-size: 9px;
+    font-weight: 700;
+
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+.form-field input {
+    height: 36px;
+}
+
+.amount-input {
+    position: relative;
+}
+
+.amount-input input {
+    padding-right: 42px;
+}
+
+.amount-input span {
+    position: absolute;
+
+    right: 10px;
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    color: var(--muted);
+
+    font-size: 10px;
+    font-weight: 650;
+
+    pointer-events: none;
+}
+
+.add-expense-btn {
+    height: 36px;
+
+    white-space: nowrap;
+}
+
+/* =========================
+   EDIT MODE
+   ========================= */
+
+.expense-card.edit-mode {
+    align-items: flex-end;
+
+    background: var(--accent-soft);
+    border-color: var(--accent);
+
+    cursor: default;
+}
+
+.edit-fields {
+    display: grid;
+
+    grid-template-columns: 1.5fr 0.7fr 0.9fr;
+
+    gap: 8px;
+
+    flex: 1;
+    min-width: 0;
+}
+
+.edit-fields input {
+    height: 34px;
+}
+
+.expense-card.edit-mode .list-item-actions {
+    flex-shrink: 0;
+}
+
+/* =========================
+   RESPONSIVE
+   ========================= */
+
+@media (max-width: 1000px) {
+    .expense-form {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .expense-name-field {
+        grid-column: span 2;
+    }
+
+    .add-expense-btn {
+        width: 100%;
+    }
+
+    .edit-fields {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (max-width: 650px) {
+    .expenses-summary {
+        flex-direction: column;
+        gap: 4px;
+    }
+
+    .expense-card {
+        flex-wrap: wrap;
+    }
+
+    .expense-info {
+        min-width: calc(100% - 40px);
+    }
+
+    .expense-amount {
+        margin-left: 29px;
+    }
+
+    .expense-card .list-item-actions {
+        width: 100%;
+        margin-left: 29px;
+    }
+
+    .expense-card .list-item-actions button {
+        flex: 1;
+    }
+
+    .expense-form {
+        grid-template-columns: 1fr;
+    }
+
+    .expense-name-field {
+        grid-column: auto;
+    }
+
+    .edit-fields {
+        grid-template-columns: 1fr;
+    }
+
+    .expense-card.edit-mode {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .expense-card.edit-mode .list-item-actions {
+        width: 100%;
+        margin-left: 0;
+    }
+
+    .expense-card.edit-mode .list-item-actions button {
+        flex: 1;
+    }
+}

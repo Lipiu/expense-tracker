@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
@@ -29,11 +30,17 @@ public class Expense {
     @Column(name = "createdAt", nullable = false)
     private LocalDateTime createdAt;
 
+    @Column(name = "dueDate")
+    private LocalDate dueDate;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "expense_list_id")
     private ExpenseList expenseList;
 
-    @ManyToOne
-    @JoinColumn(name = "user_id")
-    private User user;
+    @Column(name = "isPaid", nullable = false)
+    private boolean isPaid;
+
+//    @ManyToOne
+//    @JoinColumn(name = "user_id")
+//    private User user;
 }

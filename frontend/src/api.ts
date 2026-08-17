@@ -16,10 +16,16 @@ export async function apiCall<T = unknown>(
         try {
             json = text ? (JSON.parse(text) as T) : null;
         } catch {
-            // response wasn't JSON, that's fine
         }
         return { ok: res.ok, status: res.status, raw: text, json };
     } catch (err) {
         return { ok: false, status: 0, raw: String(err), json: null, networkError: true };
     }
+}
+
+export function formatRon(amount: number): string {
+    return new Intl.NumberFormat("ro-RO", {
+        style: "currency",
+        currency: "RON",
+    }).format(amount);
 }

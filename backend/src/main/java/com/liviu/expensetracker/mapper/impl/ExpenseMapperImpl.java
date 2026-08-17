@@ -13,9 +13,10 @@ public class ExpenseMapperImpl implements ExpenseMapper {
                 expenseDto.id(),
                 expenseDto.expenseName(),
                 expenseDto.amount(),
+                expenseDto.createdAt(),
+                expenseDto.dueDate(),
                 null,
-                null,
-                null
+                expenseDto.isPaid()
         );
     }
 
@@ -25,7 +26,9 @@ public class ExpenseMapperImpl implements ExpenseMapper {
                 expense.getId(),
                 expense.getExpenseName(),
                 expense.getAmount(),
-                expense.getCreatedAt()
+                expense.getCreatedAt(),
+                expense.getDueDate(),
+                expense.isPaid()
         );
     }
 }
