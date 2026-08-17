@@ -39,3 +39,10 @@ The application allows users to create expense lists and manage the expenses bel
 - Display overdue expenses
 - Display paid, unpaid, and overdue summaries
 - Responsive frontend layout
+
+## Features to be implemented
+- Authentication page
+  - Login
+  - Register
+  - Personal page with statistics
+- Account security
