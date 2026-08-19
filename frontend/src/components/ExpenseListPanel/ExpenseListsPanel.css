@@ -22,8 +22,8 @@
 
     border-radius: 999px;
 
-    background: var(--accent-soft);
-    color: var(--accent);
+    background: var(--bg);
+    color: var(--text);
 
     font-size: 11px;
     font-weight: 600;
@@ -63,15 +63,6 @@
     border-color: var(--border);
 }
 
-.expense-list-item.selected {
-    background: var(--accent-soft);
-    border-color: color-mix(
-            in srgb,
-            var(--accent) 45%,
-            var(--border)
-    );
-}
-
 .expense-list-content {
     flex: 1;
     min-width: 0;
@@ -109,6 +100,9 @@
     font-size: 10px;
 }
 
+.expense-card .delete-btn {
+    margin: 1px;
+}
 
 .create-list {
     margin-top: 18px;
@@ -144,6 +138,11 @@
 .create-list-form button {
     width: 100%;
     margin-top: 2px;
+    background-color: var(--text);
+}
+
+.create-list-btn {
+    color: var(--create-list-btn);
 }
 
 

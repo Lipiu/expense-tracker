@@ -556,8 +556,8 @@ export default function ExpensesPanel({
                                                         />
                                                     </div>
 
-                                                    <div className="edit-actions">
-                                                        <button
+                                                    <div>
+                                                        <button className="save-btn"
                                                             onClick={() =>
                                                                 saveEdit(
                                                                     exp
@@ -568,7 +568,7 @@ export default function ExpensesPanel({
                                                         </button>
 
                                                         <button
-                                                            className="secondary"
+                                                            className="cancel-btn"
                                                             onClick={
                                                                 cancelEdit
                                                             }
@@ -660,9 +660,9 @@ export default function ExpensesPanel({
                                                         )}
                                                     </div>
 
-                                                    <div className="expense-actions">
+                                                    <div>
                                                         <button
-                                                            className="secondary"
+                                                            className="edit-btn"
                                                             onClick={(
                                                                 e
                                                             ) =>
@@ -714,11 +714,6 @@ export default function ExpensesPanel({
                         <div className="add-expense-title">
                             Add expense
                         </div>
-
-                        <div className="add-expense-subtitle">
-                            Add an expense with an
-                            optional due date.
-                        </div>
                     </div>
 
                     <div className="expense-form">
@@ -766,7 +761,7 @@ export default function ExpensesPanel({
 
                         <div className="form-field">
                             <label>
-                                Due date
+                                Due date (optional)
                             </label>
 
                             <input

@@ -37,7 +37,7 @@ export default function App() {
         <div className="page">
             <header className="page-header">
                 <div className="page-title">
-                    <h1>Expense Tracker</h1>
+                    <h1>Welcome to Spendly</h1>
 
                     <div className="sub">
                         Manage your expense lists and track what's paid.

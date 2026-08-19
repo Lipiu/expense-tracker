@@ -198,7 +198,7 @@ export default function ExpenseListsPanel({
                         }
                     />
 
-                    <button onClick={createList}>
+                    <button className="create-list-btn" onClick={createList}>
                         + Create list
                     </button>
                 </div>
