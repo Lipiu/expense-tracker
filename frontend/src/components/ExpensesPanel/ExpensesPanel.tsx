@@ -361,7 +361,7 @@ export default function ExpensesPanel({
                             <h2>Expenses</h2>
 
                             {expenseListId != null && (
-                                <span className="muted">
+                                <span className="list-counter">
                                     List #{expenseListId}
                                 </span>
                             )}
