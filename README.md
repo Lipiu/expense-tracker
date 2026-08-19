@@ -1,48 +1,99 @@
-# Expense Tracker
+# 💸 Spendly
 
-A simple expense tracking application with a Spring Boot REST API backend and a React + TypeScript frontend.
+> A simple, clean expense tracking application.
 
-The application allows users to create expense lists and manage the expenses belonging to each list, including amounts, due dates, and paid status.
+Spendly helps you organize your expenses into lists, track due dates,
+and see at a glance what's paid, unpaid, or overdue.\
 
-## Tech Stack
+---
 
-### Backend
+# ✨ Features
 
-- Java
-- Spring Boot
-- Spring Data JPA
-- Hibernate
-- Lombok
-- Spring Security *(configured, authentication not yet implemented)*
+## 🗂️ Expense Lists
 
-### Frontend
+Organize expenses into separate lists — one for bills, one for a trip, one for groceries, whatever fits.
 
-- React
-- TypeScript
-- Vite
-- CSS
+Features:
 
-## Features
+- Create a list with a title and optional description
+- View all lists at a glance
+- Select a list to view its expenses
+- Delete a list you no longer need
 
-- Create expense lists
-- View all expense lists
-- Select an expense list
-- Delete expense lists
-- Add expenses to a list
-- View expenses grouped by month
-- Calculate monthly expense totals
-- Set an expense amount
-- Set an expense due date
-- Mark expenses as paid or unpaid
-- Edit existing expenses
-- Delete expenses
-- Display overdue expenses
-- Display paid, unpaid, and overdue summaries
-- Responsive frontend layout
+---
 
-## Features to be implemented
-- Authentication page
-  - Login
-  - Register
-  - Personal page with statistics
-- Account security
+## 📆 Expenses Grouped by Month
+
+Expenses within a list are automatically grouped by month, each with its own subtotal, so spending is easy to scan at a glance.
+
+Features:
+
+- Set an amount and an optional due date per expense
+- Automatic monthly grouping and subtotal calculation
+- Edit or delete any expense
+- Mark an expense as paid or unpaid with a single click
+
+---
+
+## ⏰ Paid, Unpaid & Overdue Tracking
+
+Every list shows a running summary of where your money stands.
+
+Features:
+
+- Total, paid, unpaid, and overdue totals per list
+- Automatic overdue detection for unpaid expenses past their due date
+- Visual paid state (checked, struck-through) vs. overdue state (highlighted)
+
+
+## 📸 Sneak peek
+
+| Dark Mode | Light Mode |
+|-----------|------------|
+| ![](assets/spendly-dark.png) | ![](assets/spendly-light.png) |
+
+---
+
+# 🏗️ Tech Stack
+
+| Layer    | Technologies                                          |
+|----------|-------------------------------------------------------|
+| Frontend | React, TypeScript, Vite, CSS                          |
+| Backend  | Java, Spring Boot, Spring Data JPA, Hibernate, Lombok |
+| Database | PostgreSQL, DBeaver                                   |
+| Security | Spring Security                                       |              
+
+---
+
+# 🚀 Getting Started
+
+## Backend
+
+```bash
+cd backend
+./mvnw spring-boot:run
+```
+
+Runs on `http://localhost:8080` by default.
+
+## Frontend
+
+```bash
+cd frontend
+npm install
+npm run dev
+```
+
+Runs on `http://localhost:5173` by default. If your frontend runs on a different port, update `allowedOrigins` in the backend's `WebConfig`.
+
+---
+
+# 🌟 Highlights
+
+- 🗂️ Multiple expense lists
+- 📆 Expenses grouped by month with subtotals
+- ⏰ Automatic overdue detection
+- ✅ One-click paid/unpaid toggle
+- 📊 Per-list totals (paid, unpaid, overdue)
+- 🌗 Light & Dark mode
+- ⚡ Built with React, TypeScript & Spring Boot
