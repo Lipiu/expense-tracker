@@ -3,7 +3,7 @@
 > A simple, clean expense tracking application.
 
 Spendly helps you organize your expenses into lists, track due dates,
-and see at a glance what's paid, unpaid, or overdue.\
+and see at a glance what's paid, unpaid, or overdue.
 
 ---
 
